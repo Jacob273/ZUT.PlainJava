@@ -6,4 +6,4 @@
 
 ## Positive flow for matrix multiplication scenario
 
-![positive_flow_for_matrix_multiplication](./positive_flow_for_matrix_multiplication.jpg)
+![positive_flow_for_matrix_multiplication](./positive_flow_for_matrix_multipilication.jpg)
