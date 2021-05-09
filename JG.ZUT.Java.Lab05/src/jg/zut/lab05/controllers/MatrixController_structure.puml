@@ -1,0 +1,167 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "jg.zut.lab05.controllers.MatrixController"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_120985 { 
+   	label=zut
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1870112445 { 
+   	label=lab05
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   ConsoleView926827188[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ConsoleView</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   controller: MatrixController [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   inputScanner: Scanner [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ DisplayOptions(menuOption: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ close()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ displayMatrix(matrixName: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ displayNewLine(message: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getMatrix(matrixName: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- inputMatricesAreNotAvailable(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ show()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Matrix1080959820[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Matrix</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   cols: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   rawMatrix: double[][] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rows: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ get(row: int, col: int): double</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initialize()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ multiply(second: Matrix): Matrix</TD></TR>
+<TR><TD ALIGN="LEFT" >- multiplySingleCell(first: double[][], second: double[][], row: int, col: int): double</TD></TR>
+<TR><TD ALIGN="LEFT" >+ transpose()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MatrixController1548063925[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MatrixController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   dict: Map&lt;String, Matrix&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ get(key: String, row: int, col: int): double</TD></TR>
+<TR><TD ALIGN="LEFT" >+ get(key: String): Matrix</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCols(key: String): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getRows(key: String): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isAvailable(key: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mutliply(firstName: String, secondName: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ putCols(key: String, cols: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ putRows(key: String, rows: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ transpose(key: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+ConsoleView926827188 -> MatrixController1548063925[label="controller
+[0..1]"];
+MatrixController1548063925 -> Matrix1080959820[label="dict
+[0..*]"];
+    
+}
+@enduml
