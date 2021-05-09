@@ -1,3 +1,4 @@
 # ZUT.PlainJava
 
-Java code
+## Model-View-Controller (in console app)
+![class_hierarchy](./class_hierarchy.jpg)
