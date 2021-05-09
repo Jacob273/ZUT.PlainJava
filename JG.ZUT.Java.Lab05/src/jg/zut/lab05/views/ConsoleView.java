@@ -29,35 +29,48 @@ public class ConsoleView  {
             switch(result)
             {
                 case 1:
-                    displayNewLine("Wprowadz liczbe kolumn dla A: ");
+                    displayNewLine("Wprowadz liczbe kolumn dla M1: ");
                     controller.putCols(M1, inputScanner.nextInt());
-                    displayNewLine("Wprowadz liczbe wierszy dla A: ");
+                    displayNewLine("Wprowadz liczbe wierszy dla M1: ");
                     controller.putRows(M1, inputScanner.nextInt());
-                    displayNewLine("Wprowadz dane dla A: ");
+                    displayNewLine("Wprowadz dane dla M1: ");
                     getMatrix(M1);
-                    displayNewLine("Wprowadz liczbe kolumn dla B: ");
+                    displayNewLine("Wprowadz liczbe kolumn dla M2: ");
                     controller.putCols(M2, inputScanner.nextInt());
-                    displayNewLine("Wprowadz liczbe wierszy dla B: ");
+                    displayNewLine("Wprowadz liczbe wierszy dla M2: ");
                     controller.putRows(M2, inputScanner.nextInt());
-                    displayNewLine("Wprowadz dane dla B: ");
+                    displayNewLine("Wprowadz dane dla M2: ");
                     getMatrix(M2);
                     break;
 
                 case 2:
                     DisplayOptions(2);
                     result = inputScanner.nextInt();
+
                     switch(result)
                     {
                         case 1:
-                            displayNewLine("...Wykonywana jest transpozycja macierzy wejsciowych...");
+                            if (inputMatricesAreNotAvailable())
+                            {
+                                break;
+                            }
                             controller.transpose(M1);
                             controller.transpose(M2);
                             break;
                         case 2:
+                            if (inputMatricesAreNotAvailable())
+                            {
+                                break;
+                            }
                             displayNewLine("...Wykonywane jest mnozenie...");
                             controller.mutliply(M1,M2);
                             break;
                         case 3:
+                            if(!controller.isAvailable(MResult))
+                            {
+                                displayNewLine("Macierz wynikowa jest niedostępna.");
+                                break;
+                            }
                             displayNewLine("...Wykonywana jest transpozycja macierzy wynikowej...");
                             controller.transpose(MResult);
                             break;
@@ -69,12 +82,21 @@ public class ConsoleView  {
                     switch(result)
                     {
                         case 1:
+                            if (inputMatricesAreNotAvailable())
+                            {
+                                break;
+                            }
                             displayNewLine("...Wyswietlanie macierzy wejsciowych...");
                             displayMatrix(M1);
                             displayNewLine("");
                             displayMatrix(M2);
                             break;
                         case 2:
+                            if(!controller.isAvailable(MResult))
+                            {
+                                displayNewLine("Macierz wynikowa jest niedostępna.");
+                                break;
+                            }
                             displayNewLine("...Wyswietlanie macierzy wynikowej...");
                             displayMatrix(MResult);
                             break;
@@ -82,6 +104,14 @@ public class ConsoleView  {
                     break;
             }
         }
+    }
+
+    private boolean inputMatricesAreNotAvailable() {
+        if(!controller.isAvailable(M1) || !controller.isAvailable(M2)) {
+            displayNewLine("Macierze nie zostały wprowadzone.");
+            return true;
+        }
+        return false;
     }
 
     public void DisplayOptions(int menuOption){

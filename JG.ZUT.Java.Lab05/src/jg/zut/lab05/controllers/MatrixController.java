@@ -32,10 +32,12 @@ public class MatrixController {
     }
 
     public int getCols(String key){
+
         return dict.get(key).getCols();
     }
 
     public int getRows(String key){
+
         return dict.get(key).getRows();
     }
 
@@ -43,6 +45,11 @@ public class MatrixController {
         Matrix m = dict.get(key);
         return m.get(row, col);
     }
+
+    public boolean isAvailable(String key) {
+        return dict.get(key).isNotNull()  ? true : false;
+    }
+
 
     public void transpose(String key){
         Matrix m = dict.get(key);

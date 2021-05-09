@@ -59,6 +59,10 @@ public class Matrix {
         }
     }
 
+    public boolean isNotNull(){
+        return rawMatrix != null == true;
+    }
+
     public void transpose()
     {
         Matrix result = new Matrix(cols, rows);
