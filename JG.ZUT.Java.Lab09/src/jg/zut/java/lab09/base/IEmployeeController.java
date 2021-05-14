@@ -8,6 +8,7 @@ public interface IEmployeeController<T extends Pracownik> {
 
     Map<String, T> get();
     int size();
+    T get(String pesel);
     boolean add(T employee);
     boolean contains(T employee);
     boolean delete(String pesel);
