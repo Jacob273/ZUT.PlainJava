@@ -29,20 +29,25 @@ public class EmployeeConsoleView implements IEmployeeView {
             switch(choice){
                 case 1: {
                     Iterator<Pracownik> iterator = getIterator();
+                    int counter = 1;
                     Pracownik p = iterator.next();
                     boolean pickNext = true;
                     while (p != null && pickNext) {
                         printStars();
                         System.out.println(p.getEmployeeInfo());
                         printStars();
-                        System.out.println(String.format("X of %s", controller.size()));
+                        System.out.println(String.format("%s of %s", counter++, controller.size()));
                         showEnterOrQ();
                         printStars();
                         String input = getString();
                         switch (input) {
                             case "":
                                 pickNext = true;
-                                p = iterator.next();
+                                p = null;
+                                if(iterator.hasNext())
+                                {
+                                    p = iterator.next();
+                                }
                                 break;
                             case "Q":
                             case "q":

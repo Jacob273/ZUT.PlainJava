@@ -1,9 +1,17 @@
 package jg.zut.java.lab09.model;
 
+import jg.zut.java.lab09.base.IEmployeeToStringConverter;
+import jg.zut.java.lab09.base.Pracownik;
+import jg.zut.java.lab09.converters.DyrektorToStringConverter;
 import java.math.BigDecimal;
 
 public class Dyrektor extends Pracownik {
 
+    IEmployeeToStringConverter converter;
+
+    public Dyrektor(){
+        converter = new DyrektorToStringConverter();
+    }
     public BigDecimal getDodatekSluzbowy() {
         return dodatekSluzbowy;
     }
@@ -22,4 +30,9 @@ public class Dyrektor extends Pracownik {
 
     private BigDecimal dodatekSluzbowy;
     private BigDecimal limitKosztowMiesieczny;
+
+    @Override
+    public String getEmployeeInfo() {
+        return converter.convert(this);
+    }
 }

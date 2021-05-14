@@ -14,7 +14,7 @@ public class HandlowiecToStringConverter implements IEmployeeToStringConverter<H
                             "Stanowisko                      :            %s \n" +
                             "Wynagrodzenie(zł)               :            %s \n" +
                             "Telefon służbowy numer          :            %s \n" +
-                            "Prowizja (%%)                    :           %s \n" +
+                            "Prowizja (%%)                   :            %s \n" +
                             "Limit prowizji/miesiąc (zł)     :            %s \n",
                     p.getPesel(), p.getImie(), p.getNazwisko(), p.getStanowisko(), p.getWynagrodzenie(),
                     p.getNumerTelefonu(), p.getProwizja(), p.getLimitProwizjiMiesieczny());
