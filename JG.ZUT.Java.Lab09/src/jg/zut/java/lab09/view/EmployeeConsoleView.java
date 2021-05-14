@@ -67,11 +67,11 @@ public class EmployeeConsoleView implements IEmployeeView {
                     }
                 }
                 continue;
-                case 2:
+                case 2: {
                     showDyrektorHandlowiec();
                     printStars();
                     String inputChoice = getString();
-                    
+
                     System.out.println("PESEL: ");
                     inputPesel = getString();
                     System.out.println("IMIE: ");
@@ -106,7 +106,7 @@ public class EmployeeConsoleView implements IEmployeeView {
                         default:
                             newEmployee = new Handlowiec();
                     }
-                    
+
                     newEmployee.setPesel(inputPesel);
                     newEmployee.setImie(inputImie);
                     newEmployee.setNazwisko(inputNazwisko);
@@ -116,6 +116,29 @@ public class EmployeeConsoleView implements IEmployeeView {
                     newEmployee.setKartaSluzbowaNumer(inputKartaSluzbowa);
                     controller.add(newEmployee);
                     continue;
+                }
+                case 3:
+                    System.out.println("Podaj identyfikator PESEL:");
+                    String inputPesel = getString();
+                    Pracownik p = controller.get(inputPesel);
+                    if(p == null)
+                    {
+                        System.out.println("Nieprawidłowy identyfikator pesel.");
+                        continue;
+                    }
+                    System.out.println(p.getEmployeeInfo());
+                    System.out.println("[Enter] - Potwierdź");
+                    System.out.println("[Q] - porzuć");
+                    String inputChoice = getString();
+                switch (inputChoice.toLowerCase(Locale.ROOT)) {
+                    case "":
+                        controller.delete(inputPesel);
+                        continue;
+                    case "q":
+                        break;
+                }
+                case 4:
+                    //TODO: kopia zapasowa
                 case 5:
                     break;
             }

@@ -27,6 +27,14 @@ public class EmployeeController implements IEmployeeController {
     }
 
     @Override
+    public Pracownik get(String pesel) {
+        if(!dic.containsKey(pesel)){
+            return null;
+        }
+        return dic.get(pesel);
+    }
+
+    @Override
     public boolean add(Pracownik employee) {
         String pesel = employee.getPesel();
         if(!dic.containsKey(pesel)){
