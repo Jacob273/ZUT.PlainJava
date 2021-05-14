@@ -1,10 +1,16 @@
-package jg.zut.java.lab09.model;
+package jg.zut.java.lab09.base;
 
 import java.math.BigDecimal;
 
 public abstract class Pracownik {
 
     private String pesel;
+    private String imie;
+    private String nazwisko;
+    private String stanowisko;
+    private BigDecimal wynagrodzenie;
+    private String numerTelefonu;
+    private String kartaSluzbowaNumer;
 
     public String getPesel() {
         return pesel;
@@ -62,16 +68,5 @@ public abstract class Pracownik {
         this.kartaSluzbowaNumer = kartaSluzbowaNumer;
     }
 
-    private String imie;
-    private String nazwisko;
-    private String stanowisko;
-    private BigDecimal wynagrodzenie;
-    private String numerTelefonu;
-    private String kartaSluzbowaNumer;
-
-
-
-
-
-
+    public abstract String getEmployeeInfo();
 }
