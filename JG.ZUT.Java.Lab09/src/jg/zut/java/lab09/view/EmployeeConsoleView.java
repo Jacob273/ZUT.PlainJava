@@ -4,8 +4,12 @@ import jg.zut.java.lab09.base.IEmployeeController;
 import jg.zut.java.lab09.base.IEmployeeView;
 import jg.zut.java.lab09.base.Pracownik;
 import jg.zut.java.lab09.controller.DummyController;
+import jg.zut.java.lab09.model.Dyrektor;
+import jg.zut.java.lab09.model.Handlowiec;
 
+import java.math.BigDecimal;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class EmployeeConsoleView implements IEmployeeView {
@@ -18,6 +22,13 @@ public class EmployeeConsoleView implements IEmployeeView {
         controller = new DummyController();
     }
 
+      String inputPesel;
+      String inputImie;
+      String inputNazwisko;
+      String inputStanowisko;
+      BigDecimal inputWynagrodzenie;
+      String inputNumerTeleFonu;
+      String inputKartaSluzbowa;
 
     public void show(){
 
@@ -40,7 +51,7 @@ public class EmployeeConsoleView implements IEmployeeView {
                         showEnterOrQ();
                         printStars();
                         String input = getString();
-                        switch (input) {
+                        switch (input.toLowerCase(Locale.ROOT)) {
                             case "":
                                 pickNext = true;
                                 p = null;
@@ -49,14 +60,64 @@ public class EmployeeConsoleView implements IEmployeeView {
                                     p = iterator.next();
                                 }
                                 break;
-                            case "Q":
                             case "q":
                                 pickNext = false;
                                 break;
                         }
                     }
                 }
-                break;
+                continue;
+                case 2:
+                    showDyrektorHandlowiec();
+                    printStars();
+                    String inputChoice = getString();
+                    
+                    System.out.println("PESEL: ");
+                    inputPesel = getString();
+                    System.out.println("IMIE: ");
+                    inputImie = getString();
+                    System.out.println("NAZWISKO: ");
+                    inputNazwisko = getString();
+                    System.out.println("STANOWISKO: ");
+                    inputStanowisko = getString();
+                    System.out.println("WYNAGRODZENIE: ");
+                    inputWynagrodzenie = getBigNumber();
+                    System.out.println("NUMER TELEFONU: ");
+                    inputNumerTeleFonu = getString();
+                    System.out.println("KARTA SLUZBOWA NUMER: ");
+                    inputKartaSluzbowa = getString();
+
+                    Pracownik newEmployee;
+                    switch (inputChoice.toLowerCase(Locale.ROOT)) {
+                        case "d":
+                            System.out.println("Dodatek sluzbowy:");
+                            BigDecimal dodatekSluzbowy = getBigNumber();
+                            System.out.println("Limit prowizji:");
+                            BigDecimal limitKosztow = getBigNumber();
+                            newEmployee = new Dyrektor(dodatekSluzbowy, limitKosztow);
+                            break;
+                        case "h":
+                            System.out.println("Prowizja: ");
+                            BigDecimal prowizja = getBigNumber();
+                            System.out.println("Limit prowizji: ");
+                            BigDecimal limitProwizji = getBigNumber();
+                            newEmployee = new Handlowiec(prowizja, limitProwizji);
+                            break;
+                        default:
+                            newEmployee = new Handlowiec();
+                    }
+                    
+                    newEmployee.setPesel(inputPesel);
+                    newEmployee.setImie(inputImie);
+                    newEmployee.setNazwisko(inputNazwisko);
+                    newEmployee.setStanowisko(inputStanowisko);
+                    newEmployee.setWynagrodzenie(inputWynagrodzenie);
+                    newEmployee.setNumerTelefonu(inputNumerTeleFonu);
+                    newEmployee.setKartaSluzbowaNumer(inputKartaSluzbowa);
+                    controller.add(newEmployee);
+                    continue;
+                case 5:
+                    break;
             }
             break;
         }
@@ -72,6 +133,7 @@ public class EmployeeConsoleView implements IEmployeeView {
         System.out.println("    2.  Dodaj pracownika");
         System.out.println("    3.  Usuń pracownika");
         System.out.println("    4.  Kopia zapasowa");
+        System.out.println("    5.  Koniec");
     }
 
     @Override
@@ -89,6 +151,13 @@ public class EmployeeConsoleView implements IEmployeeView {
     @Override
     public String getString() {
         return inputScanner.nextLine();
+    }
+
+    @Override
+    public BigDecimal getBigNumber() {
+        BigDecimal d = inputScanner.nextBigDecimal();
+        inputScanner.nextLine();
+        return d;
     }
 
     @Override
@@ -111,6 +180,11 @@ public class EmployeeConsoleView implements IEmployeeView {
     public void showEnterOrQ() {
         System.out.println("[Enter] - następny");
         System.out.println("[Q] - powrót");
+    }
+
+    @Override
+    public void showDyrektorHandlowiec() {
+        System.out.println("[D]yrektor/[H]andlowiec");
     }
 
 }

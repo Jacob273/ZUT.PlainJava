@@ -12,6 +12,12 @@ public class Dyrektor extends Pracownik {
     public Dyrektor(){
         converter = new DyrektorToStringConverter();
     }
+
+    public Dyrektor(BigDecimal dodatekSluzbowy, BigDecimal limitKosztowMiesieczny){
+        this();
+        this.dodatekSluzbowy = dodatekSluzbowy;
+        this.limitKosztowMiesieczny = limitKosztowMiesieczny;
+    }
     public BigDecimal getDodatekSluzbowy() {
         return dodatekSluzbowy;
     }

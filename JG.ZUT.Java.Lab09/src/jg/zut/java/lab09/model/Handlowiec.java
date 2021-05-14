@@ -13,6 +13,13 @@ public class Handlowiec extends Pracownik {
         converter = new HandlowiecToStringConverter();
     }
 
+    public Handlowiec(BigDecimal prowizja, BigDecimal limitProwizjiMiesieczny){
+        this();
+        this.prowizja = prowizja;
+        this.limitProwizjiMiesieczny = limitProwizjiMiesieczny;
+    }
+
+
     private BigDecimal prowizja;
 
     public BigDecimal getProwizja() {
