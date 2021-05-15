@@ -117,12 +117,11 @@ public class EmployeeConsoleView implements IEmployeeView {
                     controller.add(newEmployee);
                     continue;
                 }
-                case 3:
+                case 3: {
                     System.out.println("Podaj identyfikator PESEL:");
                     String inputPesel = getString();
                     Pracownik p = controller.get(inputPesel);
-                    if(p == null)
-                    {
+                    if (p == null) {
                         System.out.println("Nieprawidłowy identyfikator pesel.");
                         continue;
                     }
@@ -130,16 +129,49 @@ public class EmployeeConsoleView implements IEmployeeView {
                     System.out.println("[Enter] - Potwierdź");
                     System.out.println("[Q] - porzuć");
                     String inputChoice = getString();
-                switch (inputChoice.toLowerCase(Locale.ROOT)) {
-                    case "":
-                        controller.delete(inputPesel);
-                        continue;
-                    case "q":
-                        break;
+                    switch (inputChoice.toLowerCase(Locale.ROOT)) {
+                        case "":
+                            controller.delete(inputPesel);
+                            continue;
+                        case "q":
+                            break;
+                    }
                 }
-                case 4:
-                    //TODO: kopia zapasowa
+                case 4: {
+                    System.out.println("[Z]achowaj/[O]twórz");
+                    String inputChoice = getString();
+                    switch (inputChoice.toLowerCase(Locale.ROOT)) {
+                        case "z":
+                            System.out.println("Kompresja [G]zip/[Z]ip");
+                            inputChoice = getString();
+                            switch (inputChoice.toLowerCase(Locale.ROOT)) {
+                                case "g":
+                                    System.out.println("KOMPRESJA G TUDUDUD zakończona");
+                                    break;
+                                case "z":
+                                    System.out.println("KOMPRESJA Z TUDUDUD zakończona");
+                                    break;
+                            }
+                            continue;
+                        case "o":
+                            System.out.println("Nazwa pliku:");
+                            inputChoice = getString();
+                            System.out.println("[Enter] - potwierdź");
+                            System.out.println("[Q] - porzuć");
+                             inputChoice = getString();
+                            switch (inputChoice.toLowerCase(Locale.ROOT)) {
+                                case "":
+                                    System.out.println("Otwieram: " + inputChoice);
+                                    break;
+                                case "q":
+                                    break;
+                            }
+                            break;
+                    }
+                }
+                continue;
                 case 5:
+                    System.out.println("Kończenie progogramu...");
                     break;
             }
             break;
