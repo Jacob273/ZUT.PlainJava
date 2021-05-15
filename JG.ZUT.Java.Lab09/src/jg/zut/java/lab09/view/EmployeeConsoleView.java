@@ -7,6 +7,9 @@ import jg.zut.java.lab09.controller.DummyController;
 import jg.zut.java.lab09.model.Dyrektor;
 import jg.zut.java.lab09.model.Handlowiec;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.Locale;
@@ -30,7 +33,7 @@ public class EmployeeConsoleView implements IEmployeeView {
       String inputNumerTeleFonu;
       String inputKartaSluzbowa;
 
-    public void show(){
+    public void show() throws IOException, ClassNotFoundException {
 
         while(true)
         {
@@ -146,22 +149,25 @@ public class EmployeeConsoleView implements IEmployeeView {
                             inputChoice = getString();
                             switch (inputChoice.toLowerCase(Locale.ROOT)) {
                                 case "g":
+                                    controller.serializeGzip("C:\\Temp\\listapracownikow_A");
                                     System.out.println("KOMPRESJA G TUDUDUD zakończona");
                                     break;
                                 case "z":
+                                    controller.serializeZip("C:\\Temp\\listapracownikow_B");
                                     System.out.println("KOMPRESJA Z TUDUDUD zakończona");
                                     break;
                             }
                             continue;
                         case "o":
                             System.out.println("Nazwa pliku:");
-                            inputChoice = getString();
+                            String fileName = getString();
                             System.out.println("[Enter] - potwierdź");
                             System.out.println("[Q] - porzuć");
-                             inputChoice = getString();
+                            inputChoice = getString();
                             switch (inputChoice.toLowerCase(Locale.ROOT)) {
                                 case "":
-                                    System.out.println("Otwieram: " + inputChoice);
+                                    System.out.println("Otwieram: " + "C:\\Temp\\" + fileName);
+                                    controller.deserialize("C:\\Temp\\" + fileName);
                                     break;
                                 case "q":
                                     break;

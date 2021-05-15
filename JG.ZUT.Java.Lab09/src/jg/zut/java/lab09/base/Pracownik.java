@@ -1,8 +1,9 @@
 package jg.zut.java.lab09.base;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public abstract class Pracownik {
+public abstract class Pracownik implements Serializable {
 
     private String pesel;
     private String imie;

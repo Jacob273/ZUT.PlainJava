@@ -5,6 +5,10 @@ import jg.zut.java.lab09.model.Dyrektor;
 
 public class DyrektorToStringConverter implements IEmployeeToStringConverter<Dyrektor> {
 
+
+
+
+
     @Override
     public String convert(Dyrektor p) {
         return String.format(

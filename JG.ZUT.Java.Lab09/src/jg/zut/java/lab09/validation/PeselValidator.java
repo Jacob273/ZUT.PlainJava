@@ -17,6 +17,4 @@ public class PeselValidator implements IValidator {
     public PeselValidator(String pesel){
         peselArr = pesel.toCharArray();
     }
-
-
 }
